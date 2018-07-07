@@ -55,9 +55,9 @@ class World:
             self.runtime += clock.get_time()
 
             if self.in_sugar_olpc:
-                import gtk
-                while gtk.events_pending():
-                    gtk.main_iteration()
+                from gi.repository import Gtk
+                while Gtk.events_pending():
+                    Gtk.main_iteration()
 
 
             for event in pygame.event.get():

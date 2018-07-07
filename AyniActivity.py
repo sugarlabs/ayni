@@ -1,46 +1,58 @@
 from gettext import gettext as _
 
 import sys
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
 import pygame
 
-import sugar.activity.activity
-import sugar.graphics.toolbutton
-
+import sugar3.activity.activity
+import sugar3.graphics.toolbutton
+from sugar3.activity import activity
+from sugar3.graphics.toolbarbox import ToolbarBox
+from sugar3.activity.widgets import ActivityToolbarButton
+from sugar3.graphics.toolbutton import ToolButton
+from sugar3.activity.widgets import StopButton
 import sugargame.canvas
 
 import ayni
 
-class AyniActivity(sugar.activity.activity.Activity):
+class AyniActivity(activity.Activity):
 
     def __init__(self, handle):
         super(AyniActivity, self).__init__(handle)
         
         self.paused = False
-
-        # Create the game instance.
-        #self.game = world.World(in_sugar=True, update_function=self.update_gtk_events)
-
-        # Build the activity toolbar.
+        self.max_participants = 1
+        ayni.canvas = sugargame.canvas.PygameCanvas(
+                self,
+                main=ayni.run_in_sugar,
+                modules=[pygame.display, pygame.font])
+        self.set_canvas(ayni.canvas)
+        ayni.canvas.grab_focus()  
         self.build_toolbar()
 
-        # Build the Pygame canvas.
-        self._pygamecanvas = sugargame.canvas.PygameCanvas(self)
-
-        # Note that set_canvas implicitly calls read_file when resuming from the Journal.
-        self.set_canvas(self._pygamecanvas)
-        
-        #new_scene = presents.Presents(self.game)
-        #self.game.change_scene(new_scene)
-
-        # Start the game running (self.game.run is called when the activity constructor returns).
-        self._pygamecanvas.run_pygame(ayni.run_in_sugar)
-
     def build_toolbar(self):        
-        toolbar = sugar.activity.activity.ActivityToolbar(self)
-        toolbar.show()
-        self.set_toolbox(toolbar)
-        return toolbar
+
+        toolbar_box = ToolbarBox()
+        self.set_toolbar_box(toolbar_box)
+        toolbar_box.show()
+        
+        activity_button = ActivityToolbarButton(self)
+        toolbar_box.toolbar.insert(activity_button, -1)
+        activity_button.show()
+
+        separator = Gtk.SeparatorToolItem()
+        separator.props.draw = False
+        separator.set_expand(True)
+        toolbar_box.toolbar.insert(separator, -1)
+        separator.show()
+
+        stop_button = StopButton(self)
+        toolbar_box.toolbar.insert(stop_button, -1)
+        stop_button.show()
+
+        self.show_all()
 
     def _stop_play_cb(self, button):
         # Pause or unpause the game.
