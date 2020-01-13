@@ -70,7 +70,7 @@ class Pipe(Sprite, object):
                 
         if self.type == self.placeholder.type:
             return True
-        elif same.has_key(self.type) and same[self.type] == self.placeholder.type:
+        elif self.type in same and same[self.type] == self.placeholder.type:
             return True
         else:
             return False

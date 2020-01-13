@@ -12,7 +12,7 @@ import common
 import time
 import audio
 import config
-import cPickle
+import pickle
 import os
 
 class World:
@@ -63,7 +63,7 @@ class World:
             for event in pygame.event.get():
 
                 if event.type == pygame.QUIT:
-                    print event
+                    print(event)
                     quit = True
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:
@@ -73,20 +73,20 @@ class World:
                     elif event.key in [pygame.K_f, pygame.K_F3]:
                         pygame.display.toggle_fullscreen()
                     elif event.key == pygame.K_r:
-                        print "Comenzando a grabar los eventos..."
+                        print("Comenzando a grabar los eventos...")
                         save_events = True
                         self.runtime = 0
                         events = []
                     elif event.key == pygame.K_s:
                         if save_events:
-                            print "Terminando la grabacion de eventos..."
+                            print("Terminando la grabacion de eventos...")
 
                             f = open("events.txt", "wt")
-                            cPickle.dump(events, f)
+                            pickle.dump(events, f)
                             f.close()
 
                         else:
-                            print "No estaba grabando con anterioridad."
+                            print("No estaba grabando con anterioridad.")
 
                 # delega los eventos a la escena.
                 if save_events:
@@ -115,7 +115,7 @@ class World:
         self.scene.draw(self.screen)
         filename = time.strftime("screenshot_%y%m%d_%H%M%S.png")
         pygame.image.save(self.screen, filename)
-        print "Guardando:", filename
+        print("Guardando:", filename)
     
     def next_level(self, level):
         level += 1

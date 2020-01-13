@@ -16,8 +16,8 @@ class Sheet:
         dw = image_width % cols
 
         if dw > 0:
-            print "Cuidado, la imagen no es exactamente divisible."
-            print "   quitando", dw, "pixeles de la imagen."
+            print("Cuidado, la imagen no es exactamente divisible.")
+            print("   quitando", dw, "pixeles de la imagen.")
             image_width -= dw
 
 

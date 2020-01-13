@@ -1,6 +1,6 @@
 [Activity]
 name = Ayni
 bundle_id = org.sugarlabs.Ayni
-exec = sugar-activity AyniActivity.AyniActivity
+exec = sugar-activity3 AyniActivity.AyniActivity
 icon = activity-generic
 activity_version = 1

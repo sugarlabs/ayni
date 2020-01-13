@@ -16,7 +16,7 @@ import level_complete
 import particles
 import end
 import game
-import cPickle
+import pickle
 import pygame
 
 
@@ -27,7 +27,7 @@ class DemoGame(game.Game):
 
     def __init__(self, world):
         game.Game.__init__(self, world)
-        self.events = cPickle.load(open('events.txt', "rt"))
+        self.events = pickle.load(open('events.txt', "rt"))
         world.runtime = 0
         self.next_event = self.get_next_event()
 
@@ -37,7 +37,7 @@ class DemoGame(game.Game):
         if self.next_event[0] < self.world.runtime:
             event_type = self.next_event[1]
             event = self.next_event[2]
-            print event_type
+            print(event_type)
 
             if event_type == 4:
                 new_event = pygame.event.Event(pygame.MOUSEMOTION, event)
@@ -59,5 +59,5 @@ class DemoGame(game.Game):
         if self.events:
             return self.events.pop(0)
         else:
-            print "No hay mas eventos para interpretar."
+            print("No hay mas eventos para interpretar.")
             return (9999999999, 0)
