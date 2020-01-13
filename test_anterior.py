@@ -338,7 +338,7 @@ class Refuse(State):
         State.__init__(self, player)
         self.player.set_animation('boo')
         self.delay = 50
-        self.player.say(u"nah, no voy ahí.")
+        self.player.say("nah, no voy ahí.")
 
     def update(self):
         self.delay -= 1
@@ -375,9 +375,9 @@ class Wait(State):
     def _repeat_instructions(self):
         "Repite al usuario que le indique el camino."
         messages = [
-                u"si, ok, ¿que hago?",
-                u"indicame el camino...",
-                u"¿a donde?",
+                "si, ok, ¿que hago?",
+                "indicame el camino...",
+                "¿a donde?",
                 ]
         any_text = random.choice(messages)
         self.player.say(any_text)
@@ -395,7 +395,7 @@ class Player(Sprite):
         self.rect.move_ip((x, y))
         self.messages = messages
         self.audio = audio
-        self.say(u"Hola, ¿como andas?")
+        self.say("Hola, ¿como andas?")
         self.change_state(Stand(self))
         self.map = map
 
