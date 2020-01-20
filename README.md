@@ -2,6 +2,8 @@
 
 Ayni is a game about solidarity and cooperation, the game starts when a group of people start to form a cooperative to install pipes and Have water in a town.
 
+Mutual help provided by people at work in Quechua
+
 How to use?
 -----------
 
