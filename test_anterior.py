@@ -449,7 +449,6 @@ class Player(Sprite):
 # MOVED
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Ayni")
-pygame.font.init()
 
 if ENABLE_SOUND:
     pygame.mixer.init()

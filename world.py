@@ -38,7 +38,6 @@ class World:
 
         self.in_sugar_olpc = in_sugar_olpc
         pygame.display.set_caption("Ayni")
-        pygame.font.init()
         self.audio = audio.Audio()
         self.runtime = 0
 
