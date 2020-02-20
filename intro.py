@@ -25,7 +25,11 @@ class IntroAbstract(scene.Scene):
         self.must_interpolate = must_interpolate
 
     def draw_background(self, screen):
+        w, h = self.background.get_size()
         screen.blit(self.background, (0, 0))
+        screen.blit(self.background, (w, 0))
+        screen.blit(self.background, (0, h))
+        screen.blit(self.background, (w, h))
 
     def update(self):
         self.counter += 1
