@@ -16,14 +16,7 @@ class Title(scene.Scene):
     def __init__(self, world):
         scene.Scene.__init__(self, world)
         self.sprites = group.Group()
-        self.background = common.load("title_background.jpg", False)
-        w, h = self.background.get_size()
-        surface = pygame.Surface(self.world.screen.get_size())
-        surface.blit(self.background, (0, 0))
-        surface.blit(self.background, (w, 0))
-        surface.blit(self.background, (0, h))
-        surface.blit(self.background, (w, h))
-        self.background = surface
+        self.background = world.surfaces['title']
         self.title = title_sprite.TitleSprite()
         self.sprites.add(self.title)
         self.draw_background()

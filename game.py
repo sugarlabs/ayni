@@ -70,14 +70,7 @@ class Game(scene.Scene):
 
     def _draw_background_and_map(self):
         "Imprime y actualiza el fondo de pantalla para usar dirtyrectagles mas adelante."
-        self.background = common.load("background.jpg", False)
-        w, h = self.background.get_size()
-        surface = pygame.Surface(self.world.screen.get_size())
-        surface.blit(self.background, (0, 0))
-        surface.blit(self.background, (w, 0))
-        surface.blit(self.background, (0, h))
-        surface.blit(self.background, (w, h))
-        self.background = surface
+        self.background = self.world.surfaces['background']
         self.map.draw_over(self.background)
         self.world.screen.blit(self.background, (0, 0))
 

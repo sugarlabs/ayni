@@ -18,7 +18,7 @@ class End(scene.Scene):
     def __init__(self, world):
         scene.Scene.__init__(self, world)
         self.sprites = group.Group()
-        self.background = common.load("end/festejo.jpg", False)
+        self.background = world.surfaces['end']
         self.draw_background()
         self.counter = 0
 

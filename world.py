@@ -40,6 +40,9 @@ class World:
         pygame.display.set_caption("Ayni")
         self.audio = audio.Audio()
         self.runtime = 0
+        self.init_surfaces()
+
+
 
     def loop(self):
         "Bucle principal que actualiza escenas y mantiene la velocidad constante."
@@ -120,3 +123,28 @@ class World:
         level += 1
         if os.path.isfile('data/map/%d.txt' % level):
             return level
+    
+    def init_surfaces(self):
+        paths = {
+            "intro-1": "intro/1.jpg",
+            "intro-2": "intro/2.jpg",
+            "intro-3": "intro/3.jpg",
+            "intro-4": "intro/4.jpg",
+            "intro-5": "intro/5.jpg",
+            "background": "background.jpg",
+            "title": "title_background.jpg",
+            "end": "end/festejo.jpg",
+        }
+
+        self.surfaces = {}
+        screen_w, screen_h = self.screen.get_size()
+
+        # intro images
+        for k, v in paths.items():
+            surface = pygame.Surface(self.screen.get_size())
+            background = common.load(v, False)
+            w, h = background.get_size()
+            for y in range(0,screen_h, h):
+                for x in range(0, screen_w, w):
+                    surface.blit(background, (x, y))
+            self.surfaces[k] = surface
