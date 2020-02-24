@@ -42,8 +42,6 @@ class World:
         self.runtime = 0
         self.init_surfaces()
 
-
-
     def loop(self):
         "Bucle principal que actualiza escenas y mantiene la velocidad constante."
         clock = pygame.time.Clock()
@@ -139,12 +137,11 @@ class World:
         self.surfaces = {}
         screen_w, screen_h = self.screen.get_size()
 
-        # intro images
         for k, v in paths.items():
             surface = pygame.Surface(self.screen.get_size())
             background = common.load(v, False)
             w, h = background.get_size()
-            for y in range(0,screen_h, h):
+            for y in range(0, screen_h, h):
                 for x in range(0, screen_w, w):
                     surface.blit(background, (x, y))
             self.surfaces[k] = surface
