@@ -15,21 +15,21 @@ from sugar3.graphics.toolbutton import ToolButton
 from sugar3.activity.widgets import StopButton
 import sugargame.canvas
 
-import ayni
+import main
 
 class AyniActivity(activity.Activity):
 
     def __init__(self, handle):
-        super(AyniActivity, self).__init__(handle)
-        
+        activity.Activity.__init__(self, handle)
+        self.game = main.game()
         self.paused = False
         self.max_participants = 1
-        ayni.canvas = sugargame.canvas.PygameCanvas(
+        self.game.canvas = sugargame.canvas.PygameCanvas(
                 self,
-                main=ayni.run_in_sugar,
-                modules=[pygame.display, pygame.font])
-        self.set_canvas(ayni.canvas)
-        ayni.canvas.grab_focus()  
+                main=self.game.run_in_sugar,
+                modules=[pygame.display, pygame.font, pygame.mixer])
+        self.set_canvas(self.game.canvas)
+        self.game.canvas.grab_focus()  
         self.build_toolbar()
 
     def build_toolbar(self):        
